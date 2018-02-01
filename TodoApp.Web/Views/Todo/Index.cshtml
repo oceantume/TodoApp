@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TodoApp</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>
+                Item name
+                @Html.ActionLink("Done", "complete", new { id = 1 })
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
