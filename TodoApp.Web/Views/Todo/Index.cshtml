@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TodoApp.Web.ViewModels.TodoViewModel>
+@{
     Layout = null;
 }
 
@@ -10,13 +11,20 @@
     <title>TodoApp</title>
 </head>
 <body>
+    <h1>Todo App</h1>
     <div>
         <ul>
+            @foreach (var item in Model) {
             <li>
-                Item name
-                @Html.ActionLink("Done", "complete", new { id = 1 })
+                @item.Content
+                @Html.ActionLink("Done", "complete", new { id = item.Id })
             </li>
+            }
         </ul>
     </div>
+    @{ 
+        Html.RenderPartial("_AddTodoForm",
+            (TempData["_AddTodoForm"] as ViewDataDictionary) ?? new ViewDataDictionary());
+    }
 </body>
 </html>
