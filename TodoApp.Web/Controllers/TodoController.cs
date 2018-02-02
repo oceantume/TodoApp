@@ -12,8 +12,12 @@ namespace TodoApp.Web.Controllers
 {
     public class TodoController : Controller
     {
-        protected ITodoService TodoService { get; }
-            = new Core.Services.TodoService();
+        private ITodoService TodoService { get; }
+
+        public TodoController(ITodoService todoService)
+        {
+            TodoService = todoService;
+        }
 
         public async Task<ActionResult> Index()
         {
