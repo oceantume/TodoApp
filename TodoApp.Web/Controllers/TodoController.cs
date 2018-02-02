@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TodoApp.Core;
 using TodoApp.Web.ActionFilters;
 using TodoApp.Web.ViewModels;
 
@@ -10,13 +12,17 @@ namespace TodoApp.Web.Controllers
 {
     public class TodoController : Controller
     {
-        public ActionResult Index()
+        protected ITodoService TodoService { get; }
+            = new Core.Services.TodoService();
+
+        public async Task<ActionResult> Index()
         {
-            var model = new List<TodoViewModel> {
-                new TodoViewModel { Id = 1, Content = "First item" },
-                new TodoViewModel { Id = 2, Content = "Second item" },
-                new TodoViewModel { Id = 3, Content = "Third item" },
-            };
+            var result = await TodoService.GetTodoItemsAsync();
+
+            var model = result.Select(i => new TodoViewModel {
+                Id = i.Id,
+                Content = i.Content
+            });
 
             return View(model);
         }
