@@ -16,8 +16,20 @@
         <ul>
             @foreach (var item in Model) {
             <li>
-                @item.Content
-                @Html.ActionLink("Done", "complete", new { id = item.Id })
+                @if (item.Done)
+                {
+                    <span style="text-decoration: line-through">
+                        @item.Content
+                    </span>
+                    @Html.ActionLink("Undo", "start", new { id = item.Id });
+                }
+                else
+                {
+                    <span>
+                        @item.Content
+                    </span>
+                    @Html.ActionLink("Done", "complete", new { id = item.Id });
+                }
             </li>
             }
         </ul>

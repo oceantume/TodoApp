@@ -26,7 +26,8 @@ namespace TodoApp.Web.Controllers
 
             var model = result.Select(i => new TodoViewModel {
                 Id = i.Id,
-                Content = i.Content
+                Content = i.Content,
+                Done = i.Done,
             });
 
             return View(model);
@@ -48,6 +49,16 @@ namespace TodoApp.Web.Controllers
             if (ModelState.IsValid)
             {
                 await TodoService.FinishAsync(id);
+            }
+
+            return RedirectToAction("index");
+        }
+
+        public async Task<ActionResult> Start(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                await TodoService.UnfinishAsync(id);
             }
 
             return RedirectToAction("index");
