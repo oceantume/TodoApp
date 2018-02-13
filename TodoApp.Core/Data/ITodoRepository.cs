@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TodoApp.Core
+namespace TodoApp.Core.Data
 {
-    public class TodoItem
+    public interface ITodoRepository
     {
-        public int Id { get; set; }
-        public string Content { get; set; }
     }
 }

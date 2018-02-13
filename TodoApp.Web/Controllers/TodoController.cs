@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TodoApp.Core;
+using TodoApp.Core.Todo;
 using TodoApp.Web.ActionFilters;
 using TodoApp.Web.ViewModels;
 
@@ -21,7 +22,7 @@ namespace TodoApp.Web.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var result = await TodoService.GetTodoItemsAsync();
+            var result = await TodoService.GetAllAsync();
 
             var model = result.Select(i => new TodoViewModel {
                 Id = i.Id,
@@ -32,13 +33,23 @@ namespace TodoApp.Web.Controllers
         }
 
         [TempViewDataActionFilter(TempDataKey = "_AddTodoForm")]
-        public ActionResult Add(AddTodoViewModel model)
+        public async Task<ActionResult> Add(AddTodoViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                await TodoService.CreateAsync(model.Content);
+            }
+
             return RedirectToAction("index");
         }
 
-        public ActionResult Complete(int id)
+        public async Task<ActionResult> Complete(int id)
         {
+            if (ModelState.IsValid)
+            {
+                await TodoService.FinishAsync(id);
+            }
+
             return RedirectToAction("index");
         }
     }

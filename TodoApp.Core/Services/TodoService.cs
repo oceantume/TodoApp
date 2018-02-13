@@ -3,28 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TodoApp.Core.Todo;
 
 namespace TodoApp.Core.Services
 {
     public class TodoService : ITodoService
     {
-        public Task CompleteTodoAsync(int id)
+        protected ITodoStorage Storage { get; }
+
+        public TodoService(ITodoStorage todoStorage)
         {
-            throw new NotImplementedException();
+            Storage = todoStorage;
         }
 
-        public Task CreateTodoAsync(TodoItem item)
+        public Task<IEnumerable<TodoItem>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return Storage.GetAllAsync();
         }
 
-        public Task<IEnumerable<TodoItem>> GetTodoItemsAsync()
+        public async Task CreateAsync(string content)
         {
-            return Task.FromResult(new List<TodoItem> {
-                new TodoItem { Id = 1, Content = "First item" },
-                new TodoItem { Id = 2, Content = "Second item" },
-                new TodoItem { Id = 3, Content = "Third item" },
-            }.AsEnumerable());
+            int id = await Storage.CreateAsync(content, false);
+        }
+        
+        public Task FinishAsync(int id)
+        {
+            var update = new TodoStorageUpdate(id)
+                .SetDone(true);
+
+            return Storage.UpdateAsync(update);
+        }
+
+        public Task UnfinishAsync(int id)
+        {
+            var update = new TodoStorageUpdate(id)
+                .SetDone(false);
+
+            return Storage.UpdateAsync(update);
         }
     }
 }
