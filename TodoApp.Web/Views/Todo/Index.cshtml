@@ -21,14 +21,19 @@
                     <span style="text-decoration: line-through">
                         @item.Content
                     </span>
-                    @Html.ActionLink("Undo", "start", new { id = item.Id });
+
+                    using (Html.BeginForm("start", "todo", new { id = item.Id }, FormMethod.Post)) {
+                        <input type="submit" value="Undo" />
+                    }
                 }
                 else
                 {
                     <span>
                         @item.Content
                     </span>
-                    @Html.ActionLink("Done", "complete", new { id = item.Id });
+                    using (Html.BeginForm("complete", "todo", new { id = item.Id }, FormMethod.Post)) {
+                        <input type="submit" value="Done" />
+                    }
                 }
             </li>
             }

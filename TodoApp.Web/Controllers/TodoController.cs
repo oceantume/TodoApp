@@ -33,6 +33,7 @@ namespace TodoApp.Web.Controllers
             return View(model);
         }
 
+        [HttpPost]
         [TempViewDataActionFilter(TempDataKey = "_AddTodoForm")]
         public async Task<ActionResult> Add(AddTodoViewModel model)
         {
@@ -44,6 +45,7 @@ namespace TodoApp.Web.Controllers
             return RedirectToAction("index");
         }
 
+        [HttpPost]
         public async Task<ActionResult> Complete(int id)
         {
             if (ModelState.IsValid)
@@ -54,6 +56,7 @@ namespace TodoApp.Web.Controllers
             return RedirectToAction("index");
         }
 
+        [HttpPost]
         public async Task<ActionResult> Start(int id)
         {
             if (ModelState.IsValid)
