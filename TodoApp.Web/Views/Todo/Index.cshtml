@@ -20,21 +20,23 @@
     <h1>Todo App</h1>
     <div>
         <ul>
-            @foreach (var item in Model) {
-            <li>
-                @using (Html.BeginForm("index", "todo", FormMethod.Post)) {
-                    <span class="@(item.Done ? "checked" : "")">@item.Content</span>
-                    
-                    <input type="hidden" name="id" value="@(item.Id)" />
-                    <input type="hidden" name="newvalue" value="@((!item.Done).ToString())" />
-                    <input type="hidden" name="form-action" value="check" />
-                    <input type="submit" value="@(item.Done ? "Uncheck" : "Check")" />
-                }
-            </li>
+            @foreach (var item in Model)
+            {
+                <li>
+                    @using (Html.BeginForm("index", "todo", FormMethod.Post))
+                    {
+                        <span class="@(item.Checked ? "checked" : "")">@item.Content</span>
+
+                        <input type="hidden" name="id" value="@(item.Id)" />
+                        <input type="hidden" name="checked" value="@((!item.Checked).ToString())" />
+                        <input type="hidden" name="form-action" value="check" />
+                        <input type="submit" value="@(item.Checked ? "Uncheck" : "Check")" />
+                    }
+                </li>
             }
         </ul>
     </div>
-    @{ 
+    @{
         var tempViewData = TempData["_AddTodoForm"] as ViewDataDictionary;
         Html.RenderPartial("_AddTodoForm", tempViewData ?? new ViewDataDictionary());
     }

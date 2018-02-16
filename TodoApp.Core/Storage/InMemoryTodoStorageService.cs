@@ -19,7 +19,7 @@ namespace TodoApp.Core.Storage
         {
             using (await _semaphore.WaitAsyncAndGuard())
             {
-                return _items.Select(i => new TodoItem(i.Id, i.Content, i.Done));
+                return _items.Select(i => new TodoItem(i.Id, i.Content, i.Checked));
             }
         }
 

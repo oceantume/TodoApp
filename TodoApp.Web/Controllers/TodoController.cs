@@ -29,7 +29,7 @@ namespace TodoApp.Web.Controllers
             var model = result.Select(i => new TodoViewModel {
                 Id = i.Id,
                 Content = i.Content,
-                Done = i.Done,
+                Checked = i.Checked,
             });
 
             return View(model);
@@ -42,7 +42,7 @@ namespace TodoApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await TodoService.SetCheckedAsync(model.Id, model.NewValue);
+                await TodoService.SetCheckedAsync(model.Id, model.Checked);
             }
 
             return RedirectToAction("index");

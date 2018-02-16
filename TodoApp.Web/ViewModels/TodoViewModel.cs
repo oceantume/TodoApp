@@ -9,6 +9,6 @@ namespace TodoApp.Web.ViewModels
     {
         public int Id { get; set; }
         public string Content { get; set; }
-        public bool Done { get; set; }
+        public bool Checked { get; set; }
     }
 }

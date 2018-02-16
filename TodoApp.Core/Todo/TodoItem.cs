@@ -8,7 +8,7 @@ namespace TodoApp.Core.Todo
 {
     public class TodoItem
     {
-        public TodoItem(int id, string content, bool done)
+        public TodoItem(int id, string content, bool checkd)
         {
             if (id <= 0)
                 throw new ArgumentOutOfRangeException(nameof(id), id, "id must be greater than 0.");
@@ -18,11 +18,11 @@ namespace TodoApp.Core.Todo
 
             Id = id;
             Content = content;
-            Done = done;
+            Checked = checkd;
         }
 
         public int Id { get; }
         public string Content { get; }
-        public bool Done { get; }
+        public bool Checked { get; }
     }
 }
