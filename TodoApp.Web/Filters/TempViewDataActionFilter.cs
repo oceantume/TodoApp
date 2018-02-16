@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace TodoApp.Web.ActionFilters
+namespace TodoApp.Web.Filters
 {
     public class TempViewDataActionFilter : ActionFilterAttribute
     {

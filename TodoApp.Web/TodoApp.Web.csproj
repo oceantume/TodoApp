@@ -116,7 +116,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\TempViewDataActionFilter.cs" />
+    <Compile Include="Filters\OnFormKeyValue.cs" />
+    <Compile Include="Filters\TempViewDataActionFilter.cs" />
     <Compile Include="App_Start\InjectionConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -126,6 +127,7 @@
     </Compile>
     <Compile Include="ViewModels\AddTodoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CheckTodoViewModel.cs" />
     <Compile Include="ViewModels\TodoViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

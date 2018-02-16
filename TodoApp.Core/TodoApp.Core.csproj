@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\SemaphoreSlimExtensions.cs" />
+    <Compile Include="Storage\InMemoryTodoStorageService.cs" />
     <Compile Include="Todo\ITodoService.cs" />
-    <Compile Include="Todo\ITodoStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\TodoService.cs" />
+    <Compile Include="Todo\ITodoStorageService.cs" />
     <Compile Include="Todo\TodoItem.cs" />
-    <Compile Include="Storage\InMemoryTodoStorage.cs" />
-    <Compile Include="Todo\TodoStorageUpdate.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

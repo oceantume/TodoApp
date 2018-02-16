@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Routing;
 using System.Web.Routing;
 
 namespace TodoApp.Web
@@ -15,11 +16,13 @@ namespace TodoApp.Web
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
+            routes.MapMvcAttributeRoutes();
+
+            /*routes.MapRoute(
                 name: "Todo",
                 url: "{action}/{id}",
                 defaults: new { controller = "todo", action = "index", id = UrlParameter.Optional }
-            );
+            );*/
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿@model TodoApp.Web.ViewModels.AddTodoViewModel
 
 <div>
-    @using (Html.BeginForm("add", "todo", FormMethod.Post))
+    @using (Html.BeginForm("index", "todo", FormMethod.Post))
     {
         <h3>Add a new task</h3>
         @Html.TextBoxFor(m => m.Content)
+        <input type="hidden" name="form-action" value="add" />
         <input type="submit" value="Add" />
     }
 </div>

@@ -9,37 +9,29 @@ namespace TodoApp.Core.Services
 {
     public class TodoService : ITodoService
     {
-        protected ITodoStorage Storage { get; }
+        protected ITodoStorageService TodoStorage { get; }
 
-        public TodoService(ITodoStorage todoStorage)
+        public TodoService(ITodoStorageService todoStorage)
         {
-            Storage = todoStorage;
+            TodoStorage = todoStorage;
         }
 
         public Task<IEnumerable<TodoItem>> GetAllAsync()
         {
-            return Storage.GetAllAsync();
+            return TodoStorage.GetAllAsync();
         }
 
         public async Task CreateAsync(string content)
         {
-            int id = await Storage.CreateAsync(content, false);
+            await TodoStorage.CreateAsync(content);
         }
         
-        public Task FinishAsync(int id)
+        public Task SetCheckedAsync(int todoId, bool newValue)
         {
-            var update = new TodoStorageUpdate(id)
-                .SetDone(true);
-
-            return Storage.UpdateAsync(update);
-        }
-
-        public Task UnfinishAsync(int id)
-        {
-            var update = new TodoStorageUpdate(id)
-                .SetDone(false);
-
-            return Storage.UpdateAsync(update);
+            if (newValue)
+                return TodoStorage.CheckAsync(todoId);
+            else
+                return TodoStorage.UncheckAsync(todoId);
         }
     }
 }

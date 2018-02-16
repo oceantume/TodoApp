@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TodoApp.Core;
 using TodoApp.Core.Todo;
-using TodoApp.Web.ActionFilters;
+using TodoApp.Web.Filters;
 using TodoApp.Web.ViewModels;
 
 namespace TodoApp.Web.Controllers
@@ -20,6 +20,8 @@ namespace TodoApp.Web.Controllers
             TodoService = todoService;
         }
 
+        [HttpGet]
+        [Route(""), Route("Index")]
         public async Task<ActionResult> Index()
         {
             var result = await TodoService.GetAllAsync();
@@ -32,36 +34,29 @@ namespace TodoApp.Web.Controllers
 
             return View(model);
         }
+        
+        [HttpPost]
+        [Route(""), Route("Index")]
+        [OnFormKeyValue("form-action", "check")]
+        public async Task<ActionResult> Index_Check(CheckTodoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await TodoService.SetCheckedAsync(model.Id, model.NewValue);
+            }
+
+            return RedirectToAction("index");
+        }
 
         [HttpPost]
+        [Route(""), Route("Index")]
+        [OnFormKeyValue("form-action", "add")]
         [TempViewDataActionFilter(TempDataKey = "_AddTodoForm")]
-        public async Task<ActionResult> Add(AddTodoViewModel model)
+        public async Task<ActionResult> Index_Add(AddTodoViewModel model)
         {
             if (ModelState.IsValid)
             {
                 await TodoService.CreateAsync(model.Content);
-            }
-
-            return RedirectToAction("index");
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Complete(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                await TodoService.FinishAsync(id);
-            }
-
-            return RedirectToAction("index");
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> Start(int id)
-        {
-            if (ModelState.IsValid)
-            {
-                await TodoService.UnfinishAsync(id);
             }
 
             return RedirectToAction("index");

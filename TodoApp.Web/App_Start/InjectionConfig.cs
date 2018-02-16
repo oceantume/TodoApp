@@ -22,7 +22,7 @@ namespace TodoApp.Web
         private static void RegisterTodoAppTypes(this Container container)
         {
             container.Register<Core.Todo.ITodoService, Core.Services.TodoService>(Lifestyle.Scoped);
-            container.Register<Core.Todo.ITodoStorage, Core.Storage.InMemoryTodoStorage>(Lifestyle.Singleton);
+            container.Register<Core.Todo.ITodoStorageService, Core.Storage.InMemoryTodoStorageService>(Lifestyle.Singleton);
         }
     }
 }

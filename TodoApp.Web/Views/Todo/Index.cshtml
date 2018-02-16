@@ -9,6 +9,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>TodoApp</title>
+
+    <style>
+        .checked {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <h1>Todo App</h1>
@@ -16,32 +22,21 @@
         <ul>
             @foreach (var item in Model) {
             <li>
-                @if (item.Done)
-                {
-                    <span style="text-decoration: line-through">
-                        @item.Content
-                    </span>
-
-                    using (Html.BeginForm("start", "todo", new { id = item.Id }, FormMethod.Post)) {
-                        <input type="submit" value="Undo" />
-                    }
-                }
-                else
-                {
-                    <span>
-                        @item.Content
-                    </span>
-                    using (Html.BeginForm("complete", "todo", new { id = item.Id }, FormMethod.Post)) {
-                        <input type="submit" value="Done" />
-                    }
+                @using (Html.BeginForm("index", "todo", FormMethod.Post)) {
+                    <span class="@(item.Done ? "checked" : "")">@item.Content</span>
+                    
+                    <input type="hidden" name="id" value="@(item.Id)" />
+                    <input type="hidden" name="newvalue" value="@((!item.Done).ToString())" />
+                    <input type="hidden" name="form-action" value="check" />
+                    <input type="submit" value="@(item.Done ? "Uncheck" : "Check")" />
                 }
             </li>
             }
         </ul>
     </div>
     @{ 
-        Html.RenderPartial("_AddTodoForm",
-            (TempData["_AddTodoForm"] as ViewDataDictionary) ?? new ViewDataDictionary());
+        var tempViewData = TempData["_AddTodoForm"] as ViewDataDictionary;
+        Html.RenderPartial("_AddTodoForm", tempViewData ?? new ViewDataDictionary());
     }
 </body>
 </html>
