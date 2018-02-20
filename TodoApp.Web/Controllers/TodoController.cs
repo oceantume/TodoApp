@@ -38,7 +38,7 @@ namespace TodoApp.Web.Controllers
         [HttpPost]
         [Route(""), Route("Index")]
         [OnFormKey("submit-check")]
-        public async Task<ActionResult> Index_Check(CheckTodoViewModel model)
+        public async Task<ActionResult> Index_Check(CheckTodoFormModel model)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace TodoApp.Web.Controllers
         [HttpPost]
         [Route(""), Route("Index")]
         [OnFormKey("submit-uncheck")]
-        public async Task<ActionResult> Index_Uncheck(CheckTodoViewModel model)
+        public async Task<ActionResult> Index_Uncheck(CheckTodoFormModel model)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace TodoApp.Web.Controllers
         [Route(""), Route("Index")]
         [OnFormKey("submit-add")]
         [TempViewDataActionFilter(TempDataKey = "_AddTodoForm")]
-        public async Task<ActionResult> Index_Add(AddTodoViewModel model)
+        public async Task<ActionResult> Index_Add(AddTodoFormModel model)
         {
             if (ModelState.IsValid)
             {

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TodoApp.Web.ViewModels
 {
-    public class CheckTodoViewModel
+    public class CheckTodoFormModel
     {
         public int Id { get; set; }
     }

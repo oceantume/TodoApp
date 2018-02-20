@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TodoApp.Web.ViewModels
 {
-    public class AddTodoViewModel
+    public class AddTodoFormModel
     {
         public string Content { get; set; }
     }
