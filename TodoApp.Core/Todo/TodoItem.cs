@@ -16,6 +16,9 @@ namespace TodoApp.Core.Todo
             if (string.IsNullOrWhiteSpace(content))
                 throw new ArgumentOutOfRangeException(nameof(content), content, "must be a non-whitespace string");
 
+            if (content.Length > 200)
+                throw new ArgumentOutOfRangeException(nameof(content), content, "can't be bigger than 200 characters");
+
             Id = id;
             Content = content;
             Checked = checkd;

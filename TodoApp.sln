@@ -8,8 +8,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Web", "TodoApp.Web\TodoApp.Web.csproj", "{19852BDB-213B-4999-9224-230920EBAF1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Core.Tests", "TodoApp.Core.Tests\TodoApp.Core.Tests.csproj", "{CD04B552-9295-4915-9B85-E8787618ADF6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3301BFA8-1A95-4CCA-A223-E0B722715C1E} = {3301BFA8-1A95-4CCA-A223-E0B722715C1E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Web.Tests", "TodoApp.Web.Tests\TodoApp.Web.Tests.csproj", "{0F83D298-60E3-455E-AABD-BB620A3AC3CC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{19852BDB-213B-4999-9224-230920EBAF1A} = {19852BDB-213B-4999-9224-230920EBAF1A}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

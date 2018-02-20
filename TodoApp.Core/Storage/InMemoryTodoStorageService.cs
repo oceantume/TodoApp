@@ -27,11 +27,11 @@ namespace TodoApp.Core.Storage
         {
             using (await _semaphore.WaitAsyncAndGuard())
             { 
-                var id = ++_lastId;
+                var id = _lastId + 1;
 
                 _items.Add(new TodoItem(id, content, false));
 
-                return id;
+                return _lastId = id;
             }
         }
 
