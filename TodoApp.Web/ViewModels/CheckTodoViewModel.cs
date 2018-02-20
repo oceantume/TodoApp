@@ -8,6 +8,5 @@ namespace TodoApp.Web.ViewModels
     public class CheckTodoViewModel
     {
         public int Id { get; set; }
-        public bool Checked { get; set; }
     }
 }

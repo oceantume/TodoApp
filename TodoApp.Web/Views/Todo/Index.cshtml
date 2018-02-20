@@ -23,15 +23,7 @@
             @foreach (var item in Model)
             {
                 <li>
-                    @using (Html.BeginForm("index", "todo", FormMethod.Post))
-                    {
-                        <span class="@(item.Checked ? "checked" : "")">@item.Content</span>
-
-                        <input type="hidden" name="id" value="@(item.Id)" />
-                        <input type="hidden" name="checked" value="@((!item.Checked).ToString())" />
-                        <input type="hidden" name="form-action" value="check" />
-                        <input type="submit" value="@(item.Checked ? "Uncheck" : "Check")" />
-                    }
+                    @{ Html.RenderPartial("_TodoListItem", item); }
                 </li>
             }
         </ul>

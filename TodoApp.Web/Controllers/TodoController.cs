@@ -34,15 +34,15 @@ namespace TodoApp.Web.Controllers
 
             return View(model);
         }
-        
+
         [HttpPost]
         [Route(""), Route("Index")]
-        [OnFormKeyValue("form-action", "check")]
+        [OnFormKey("submit-check")]
         public async Task<ActionResult> Index_Check(CheckTodoViewModel model)
         {
             if (ModelState.IsValid)
             {
-                await TodoService.SetCheckedAsync(model.Id, model.Checked);
+                await TodoService.CheckAsync(model.Id);
             }
 
             return RedirectToAction("index");
@@ -50,7 +50,20 @@ namespace TodoApp.Web.Controllers
 
         [HttpPost]
         [Route(""), Route("Index")]
-        [OnFormKeyValue("form-action", "add")]
+        [OnFormKey("submit-uncheck")]
+        public async Task<ActionResult> Index_Uncheck(CheckTodoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await TodoService.UncheckAsync(model.Id);
+            }
+
+            return RedirectToAction("index");
+        }
+
+        [HttpPost]
+        [Route(""), Route("Index")]
+        [OnFormKey("submit-add")]
         [TempViewDataActionFilter(TempDataKey = "_AddTodoForm")]
         public async Task<ActionResult> Index_Add(AddTodoViewModel model)
         {

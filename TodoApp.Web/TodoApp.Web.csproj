@@ -116,7 +116,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\OnFormKeyValue.cs" />
+    <Compile Include="Filters\OnFormKey.cs" />
     <Compile Include="Filters\TempViewDataActionFilter.cs" />
     <Compile Include="App_Start\InjectionConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -137,6 +137,7 @@
     </None>
     <Content Include="Views\Todo\Index.cshtml" />
     <Content Include="Views\Todo\_AddTodoForm.cshtml" />
+    <Content Include="Views\Todo\_TodoListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TodoApp.Core\TodoApp.Core.csproj">

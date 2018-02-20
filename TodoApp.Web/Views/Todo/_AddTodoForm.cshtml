@@ -5,7 +5,7 @@
     {
         <h3>Add a new task</h3>
         @Html.TextBoxFor(m => m.Content)
-        <input type="hidden" name="form-action" value="add" />
-        <input type="submit" value="Add" />
+        @Html.ValidationMessageFor(m => m.Content)
+        <input type="submit" name="submit-add" value="Add" />
     }
 </div>

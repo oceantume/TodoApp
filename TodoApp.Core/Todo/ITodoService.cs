@@ -12,6 +12,7 @@ namespace TodoApp.Core.Todo
 
         Task CreateAsync(string content);
 
-        Task SetCheckedAsync(int todoId, bool newValue);
+        Task CheckAsync(int todoId);
+        Task UncheckAsync(int todoId);
     }
 }

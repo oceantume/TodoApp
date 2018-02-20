@@ -1,0 +1,10 @@
+﻿@model TodoApp.Web.ViewModels.TodoViewModel
+
+@using (Html.BeginForm("index", "todo", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <span class="@(Model.Checked ? "checked" : "")">@Model.Content</span>
+
+    <input type="submit" name="@(Model.Checked ? "submit-uncheck" : "submit-check")" value="@(Model.Checked ? "Uncheck" : "Check")" />
+}

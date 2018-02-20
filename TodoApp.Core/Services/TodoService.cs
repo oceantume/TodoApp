@@ -25,13 +25,15 @@ namespace TodoApp.Core.Services
         {
             await TodoStorage.CreateAsync(content);
         }
-        
-        public Task SetCheckedAsync(int todoId, bool newValue)
+
+        public Task CheckAsync(int todoId)
         {
-            if (newValue)
-                return TodoStorage.CheckAsync(todoId);
-            else
-                return TodoStorage.UncheckAsync(todoId);
+            return TodoStorage.CheckAsync(todoId);
+        }
+
+        public Task UncheckAsync(int todoId)
+        {
+            return TodoStorage.UncheckAsync(todoId);
         }
     }
 }
