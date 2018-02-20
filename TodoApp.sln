@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Core", "TodoApp.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Web", "TodoApp.Web\TodoApp.Web.csproj", "{19852BDB-213B-4999-9224-230920EBAF1A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Core.Tests", "TodoApp.Core.Tests\TodoApp.Core.Tests.csproj", "{CD04B552-9295-4915-9B85-E8787618ADF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoApp.Web.Tests", "TodoApp.Web.Tests\TodoApp.Web.Tests.csproj", "{0F83D298-60E3-455E-AABD-BB620A3AC3CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{19852BDB-213B-4999-9224-230920EBAF1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19852BDB-213B-4999-9224-230920EBAF1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19852BDB-213B-4999-9224-230920EBAF1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD04B552-9295-4915-9B85-E8787618ADF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD04B552-9295-4915-9B85-E8787618ADF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD04B552-9295-4915-9B85-E8787618ADF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD04B552-9295-4915-9B85-E8787618ADF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F83D298-60E3-455E-AABD-BB620A3AC3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F83D298-60E3-455E-AABD-BB620A3AC3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F83D298-60E3-455E-AABD-BB620A3AC3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F83D298-60E3-455E-AABD-BB620A3AC3CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
