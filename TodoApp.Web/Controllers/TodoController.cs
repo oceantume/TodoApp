@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TodoApp.Core;
+using TodoApp.Core.Requests;
 using TodoApp.Core.Todo;
 using TodoApp.Web.Filters;
 using TodoApp.Web.ViewModels;
@@ -13,18 +15,18 @@ namespace TodoApp.Web.Controllers
 {
     public class TodoController : Controller
     {
-        private ITodoService TodoService { get; }
+        private IMediator Mediator { get; }
 
-        public TodoController(ITodoService todoService)
+        public TodoController(IMediator mediator)
         {
-            TodoService = todoService;
+            Mediator = mediator;
         }
 
         [HttpGet]
         [Route(""), Route("Index")]
         public async Task<ActionResult> Index()
         {
-            var result = await TodoService.GetAllAsync();
+            var result = await Mediator.Send(new GetAllTodosRequest { });
 
             var model = result.Select(i => new TodoViewModel {
                 Id = i.Id,
@@ -42,7 +44,7 @@ namespace TodoApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await TodoService.CheckAsync(model.Id);
+                await Mediator.Send(new CheckTodoRequest { TodoId = model.Id, Checked = true });
             }
 
             return RedirectToAction("index");
@@ -55,7 +57,7 @@ namespace TodoApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await TodoService.UncheckAsync(model.Id);
+                await Mediator.Send(new CheckTodoRequest { TodoId = model.Id, Checked = false });
             }
 
             return RedirectToAction("index");
@@ -69,7 +71,7 @@ namespace TodoApp.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await TodoService.CreateAsync(model.Content);
+                await Mediator.Send(new CreateTodoRequest { Content = model.Content });
             }
 
             return RedirectToAction("index");
